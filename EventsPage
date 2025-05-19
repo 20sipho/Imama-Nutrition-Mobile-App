@@ -1,0 +1,153 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class EventsPage extends JFrame {
+    public EventsPage() {
+        setTitle("Events");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(800, 700);
+        setLocationRelativeTo(null);
+
+        // Main panel with border layout
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBackground(Color.WHITE);
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+
+        // Navigation bar
+        JPanel navPanel = new JPanel();
+        navPanel.setBackground(Color.WHITE);
+        navPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 10));
+        
+        String[] navItems = {"HOME", "ABOUT", "EVENTS", "VOLUNTEER", "DONATION", "CONTACT"};
+        for (String item : navItems) {
+            JButton navButton = new JButton(item);
+            navButton.setFont(new Font("Arial", Font.BOLD, 14));
+            navButton.setForeground(Color.BLACK);
+            navButton.setContentAreaFilled(false);
+            navButton.setBorderPainted(false);
+            navButton.setFocusPainted(false);
+            navPanel.add(navButton);
+        }
+        mainPanel.add(navPanel, BorderLayout.NORTH);
+
+        // Content panel
+        JPanel contentPanel = new JPanel();
+        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
+        contentPanel.setBackground(Color.WHITE);
+
+        // Title
+        JLabel titleLabel = new JLabel("Upcoming Events");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
+        contentPanel.add(titleLabel);
+
+        // Description
+        JTextArea description = new JTextArea(
+            "At Imams Nutrition Community and Skills Development, we host a variety of events " +
+            "aimed at empowering children. Our events provide opportunities for learning, " +
+            "collaboration, and fun, ensuring that every child receives the support they need to thrive."
+        );
+        description.setFont(new Font("Arial", Font.PLAIN, 14));
+        description.setLineWrap(true);
+        description.setWrapStyleWord(true);
+        description.setEditable(false);
+        description.setBackground(Color.WHITE);
+        description.setAlignmentX(Component.LEFT_ALIGNMENT);
+        description.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
+        contentPanel.add(description);
+
+        // Divider line
+        JSeparator divider = new JSeparator();
+        divider.setAlignmentX(Component.LEFT_ALIGNMENT);
+        divider.setForeground(Color.BLACK);
+        divider.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
+        contentPanel.add(divider);
+
+        // Events section
+        JPanel eventsPanel = new JPanel();
+        eventsPanel.setLayout(new BoxLayout(eventsPanel, BoxLayout.Y_AXIS));
+        eventsPanel.setBackground(Color.WHITE);
+        eventsPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        // Event 1
+        JLabel event1Date = new JLabel("3 Month");
+        event1Date.setFont(new Font("Arial", Font.BOLD, 18));
+        event1Date.setAlignmentX(Component.LEFT_ALIGNMENT);
+        eventsPanel.add(event1Date);
+
+        JLabel event1Title = new JLabel("Skill Development Workshops");
+        event1Title.setFont(new Font("Arial", Font.BOLD, 16));
+        event1Title.setAlignmentX(Component.LEFT_ALIGNMENT);
+        event1Title.setBorder(BorderFactory.createEmptyBorder(5, 0, 10, 0));
+        eventsPanel.add(event1Title);
+
+        // Bullet points
+        String[] bulletPoints = {
+            "Nutrition & Health Awareness Programs",
+            "Violence/Appreciation Day",
+            "Fundraising & Charity Drives"
+        };
+        
+        for (String point : bulletPoints) {
+            JLabel bullet = new JLabel("• " + point);
+            bullet.setFont(new Font("Arial", Font.PLAIN, 14));
+            bullet.setAlignmentX(Component.LEFT_ALIGNMENT);
+            bullet.setBorder(BorderFactory.createEmptyBorder(0, 20, 5, 0));
+            eventsPanel.add(bullet);
+        }
+
+        // Event descriptions
+        String[] eventDescriptions = {
+            "On sessions focusing on literacy, numeracy, creative arts, and vocational training to equip children with valuable skills for the future.",
+            "Informative sessions and health camps promoting proper nutrition, hygiene, and overall wellness for children and their families.",
+            "Recognizing the contributions of our dedicated volunteers and partners who help make our work possible. Their efforts play a crucial role in ensuring the success of our programs, and we celebrate their hard work and commitment to making a difference.",
+            "Opportunities to contribute to our cause through donation drives, sponsorship events, and charity initiatives that help sustain our programs."
+        };
+        
+        for (String desc : eventDescriptions) {
+            JTextArea descArea = new JTextArea(desc);
+            descArea.setFont(new Font("Arial", Font.PLAIN, 14));
+            descArea.setLineWrap(true);
+            descArea.setWrapStyleWord(true);
+            descArea.setEditable(false);
+            descArea.setBackground(Color.WHITE);
+            descArea.setAlignmentX(Component.LEFT_ALIGNMENT);
+            descArea.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+            eventsPanel.add(descArea);
+        }
+
+        // Divider line
+        JSeparator divider2 = new JSeparator();
+        divider2.setAlignmentX(Component.LEFT_ALIGNMENT);
+        divider2.setForeground(Color.BLACK);
+        divider2.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
+        eventsPanel.add(divider2);
+
+        // Event 2
+        JLabel event2Date = new JLabel("4 Months");
+        event2Date.setFont(new Font("Arial", Font.BOLD, 18));
+        event2Date.setAlignmentX(Component.LEFT_ALIGNMENT);
+        eventsPanel.add(event2Date);
+
+        JLabel event2Title = new JLabel("Selling Activities");
+        event2Title.setFont(new Font("Arial", Font.BOLD, 16));
+        event2Title.setAlignmentX(Component.LEFT_ALIGNMENT);
+        event2Title.setBorder(BorderFactory.createEmptyBorder(5, 0, 20, 0));
+        eventsPanel.add(event2Title);
+
+        contentPanel.add(eventsPanel);
+        mainPanel.add(contentPanel, BorderLayout.CENTER);
+
+        add(mainPanel);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            EventsPage eventsPage = new EventsPage();
+            eventsPage.setVisible(true);
+        });
+    }
+}
